@@ -66,5 +66,3 @@ ADD server.key /
 # ADD janus.plugin.streaming.cfg.sample /janus-gateway/conf
 # ADD janus.transport.http.cfg.sample /janus-gateway/conf
 # RUN cd janus-gateway && make configs
-
-ADD run.sh /
