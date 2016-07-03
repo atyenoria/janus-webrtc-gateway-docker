@@ -1,0 +1,21 @@
+janus:
+  build: ./
+  container_name: janus
+  ports:
+    - "443:443"
+    - "8088:8088"
+    - "8089:8089"
+    - "8188:8188"
+    - "8004:8004/udp"
+    - "8004:8004/tcp"
+    - "443:443"
+  # environment:
+      # CLOUD_APP_DOMAIN: "https://www.horita-works.com"
+  # links:
+   # - db2:db2
+  working_dir: "/app"
+  volumes:
+    - "./data:/app"
+  # command: "/bin/bash /start.sh"
+  command: "/bin/bash"
+  tty: true
