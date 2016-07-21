@@ -1,4 +1,5 @@
-FROM ubuntu:16.04
+# FROM ubuntu:16.04
+FROM ruby:2.3
 
 RUN sed -i 's/archive.ubuntu.com/mirror.aarnet.edu.au\/pub\/ubuntu\/archive/g' /etc/apt/sources.list
 
@@ -47,7 +48,15 @@ RUN git clone https://github.com/alanxz/rabbitmq-c && \
     ./configure --prefix=/usr && make && make install
 
 
+RUN apt-get install -y nginx
+ADD nginx.conf /etc/nginx
+ADD server.crt /
+ADD server.key /
 
+
+# - ./configure  PKG_CONFIG_PATH=/FFmpeg/libavcodec:/FFmpeg/libavdevice:/FFmpeg/libavfilter:/FFmpeg/libavformat:/FFmpeg/libavresample:/FFmpeg/libavutil:/FFmpeg/libpostproc:/FFmpeg/library.mak:/FFmpeg/libswresample:/FFmpeg/libswscale --prefix=/usr/local --enable-post-processing --disable-rabbitmq
+#   ./configure PKG_CONFIG_PATH=./ffmpeg/libavutil:./ffmpeg/libavcodec:./ffmpeg/libswresample:./ffmpeg/libavformat --prefix=/usr/local --enable-post-processing
+#   -
 # RUN git clone https://github.com/meetecho/janus-gateway.git && \
 #     cd janus-gateway && \
 #     sh autogen.sh && \
@@ -57,10 +66,11 @@ RUN git clone https://github.com/alanxz/rabbitmq-c && \
 #     make configs
 
 
-RUN apt-get install -y nginx
-ADD nginx.conf /etc/nginx
-ADD server.crt /
-ADD server.key /
+RUN cd / && git clone https://github.com/FFmpeg/FFmpeg.git && cd /FFmpeg && \
+    ./configure --disable-yasm && \
+    make
+
+
 
 # RUN cp -r /opt/janus/share/janus/demos/ /janus-gateway/html/
 # ADD janus.plugin.streaming.cfg.sample /janus-gateway/conf
