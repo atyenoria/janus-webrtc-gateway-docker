@@ -11,7 +11,7 @@ db:
 redis:
   image: redis
   ports:
-    - 6379
+    - "6379:6379"
 
 janus:
   build: ./
@@ -27,7 +27,7 @@ janus:
   working_dir: "/app/akb_new"
   volumes:
     - "./data:/app"
-    - "/ruby"
+    - "/root/ruby"
   command: "/bin/bash"
   tty: true
   links:
