@@ -6,7 +6,7 @@ run: image
 	@docker run --rm --net=host --name="janus" -it -P -p 443:443 -v `pwd`/data:/app -p 8088:8088 -p 8004:8004/udp -p 8004:8004 -p 8089:8089 -p 8188:8188 -t atyenoria/$(TEMPLATE_NAME) /bin/bash
 	@docker run --rm --net=host --name="janus" -it -P -p 443:443 -v `pwd`/data:/app -p 8088:8088 -p 8004:8004/udp -p 8004:8004 -p 8089:8089 -p 8188:8188 -t atyenoria/$(TEMPLATE_NAME) /bin/bash
 
-
+e
 image:
 	@docker build -t atyenoria/$(TEMPLATE_NAME) .
 

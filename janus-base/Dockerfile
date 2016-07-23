@@ -61,4 +61,6 @@ RUN cd / && git clone https://github.com/FFmpeg/FFmpeg.git && cd /FFmpeg && \
 
 
 RUN gem install rails -v '5.0'
+RUN apt-get -y install nodejs
+RUN apt-get -y install rsync
 
