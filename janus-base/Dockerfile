@@ -24,7 +24,7 @@ RUN apt-get -y update && apt-get install -y libmicrohttpd-dev \
     git \
     cmake \
     lsof \
-    wget vim
+    wget vim sudo nodejs rsync nginx
 
 
 RUN git clone https://github.com/sctplab/usrsctp && \
@@ -48,16 +48,9 @@ RUN git clone https://github.com/alanxz/rabbitmq-c && \
     ./configure --prefix=/usr && make && make install
 
 
-RUN apt-get install -y nginx
-ADD nginx.conf /etc/nginx
-ADD server.crt /
-ADD server.key /
-
 
 
 RUN gem install rails -v '5.0'
-RUN apt-get -y install nodejs
-RUN apt-get -y install rsync
 
 
 

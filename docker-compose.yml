@@ -13,11 +13,20 @@ redis:
   ports:
     - "6379:6379"
 
+
+data:
+  image: "busybox:latest"
+  command: "/bin/sh"
+  tty: true
+  volumes:
+    - "/root/ruby"
+
 janus:
   build: ./
   container_name: janus
   ports:
     - "443:443"
+    - "4000:4000"
     - "3000:3000"
     - "8088:8088"
     - "8089:8089"
@@ -27,11 +36,10 @@ janus:
   working_dir: "/app/akb_new"
   volumes:
     - "./data:/app"
-    - "/root/ruby"
+  volumes_from:
+    - "data"
   command: "/bin/bash"
   tty: true
   links:
     - "db:db"
     - "redis:redis"
-
-
