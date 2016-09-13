@@ -169,8 +169,9 @@ RUN cd ~/ffmpeg_sources && \
     hash -r
 
 
-# RUN cd / && git clone https://github.com/FFmpeg/FFmpeg.git && cd /FFmpeg && \
-#     ./configure --disable-yasm && \
-#     make && \
-#     make install
+RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && \
+    cd janus-gateway && \
+    sh autogen.sh
+
+
 
