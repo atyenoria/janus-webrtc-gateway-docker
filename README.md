@@ -21,3 +21,6 @@ rsync -av --delete /Users/jima/webrtc/docker-janus/data --exclude=video root@192
 ```
 cd janus-base && make image && cd ../ && make run 
 ```
+
+- todo
+ - add coturn, nginx-rtmp module 
