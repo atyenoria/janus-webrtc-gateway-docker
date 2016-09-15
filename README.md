@@ -1,4 +1,9 @@
-- build error
+- setup
+```
+cd janus-base && make image && cd ../ && make run
+```
+
+- janus gateaway build error
 ```
 postprocessiong/{ pp-webm.c, pp-h264.c } from PIX_FMT_YUV420P to AV_PIX_FMT_YUV420P
 ```
@@ -17,10 +22,3 @@ docker-machine create -d virtualbox --virtualbox-cpu-count "4" --virtualbox-memo
 rsync -av --delete /Users/jima/webrtc/docker-janus/data --exclude=video root@192.168.187.181:/root/
 ```
 
-- setup
-```
-cd janus-base && make image && cd ../ && make run 
-```
-
-- todo
- - add coturn, nginx-rtmp module 
