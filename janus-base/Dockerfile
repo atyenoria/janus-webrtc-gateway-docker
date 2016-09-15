@@ -53,8 +53,6 @@ RUN git clone https://github.com/alanxz/rabbitmq-c && \
 RUN gem install rails -v '5.0'
 
 
-
-
 #ffmpeg https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 RUN mkdir ~/ffmpeg_sources
 
@@ -173,5 +171,29 @@ RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && \
     cd janus-gateway && \
     sh autogen.sh
 
+RUN git clone https://github.com/coturn/coturn.git && \
+    cd coturn && \
+    ./configure && \
+    make && make install
 
+RUN nginx_build=/root/nginx && mkdir $nginx_build && \
+    cd $nginx_build && \
+    wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.39.tar.gz && \
+    tar -zxf pcre-8.39.tar.gz && \
+    cd pcre-8.39 && \
+    ./configure && make && make install && \
+    cd $nginx_build && \
+    wget http://zlib.net/zlib-1.2.8.tar.gz && \
+    tar -zxf zlib-1.2.8.tar.gz && \
+    cd zlib-1.2.8 && \
+    ./configure && make &&  make install && \
+    cd $nginx_build && \
+    wget https://github.com/arut/nginx-rtmp-module/archive/v1.1.9.tar.gz && \
+    tar zxf v1.1.9.tar.gz && mv nginx-rtmp-module-1.1.9 nginx-rtmp-module
+
+RUN  nginx_build=/root/nginx && cd $nginx_build  && \
+    wget http://nginx.org/download/nginx-1.10.1.tar.gz  && \
+    tar zxf nginx-1.10.1.tar.gz && cd nginx-1.10.1 && \
+    ./configure --sbin-path=/usr/local/nginx/nginx --conf-path=/usr/local/nginx/nginx.conf  --pid-path=/usr/local/nginx/nginx.pid \
+    --with-pcre=../pcre-8.39 --with-zlib=../zlib-1.2.8  --with-http_ssl_module --with-stream --with-mail=dynamic --add-module=$nginx_build/nginx-rtmp-module
 
