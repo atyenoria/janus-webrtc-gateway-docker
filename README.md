@@ -1,27 +1,17 @@
-- setup
-```
-cd janus-base && make image && cd ../ && make run
-```
+ # Introduction 
+This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under active development phase. So, as the official docs says, some minor modification of the middleware library versions happens frequently. I try to deal with such a chage as much as I can. If you need any request about this repo, free to contact me.
 
-- janus gateaway build error
-```
-postprocessiong/{ pp-webm.c, pp-h264.c } from PIX_FMT_YUV420P to AV_PIX_FMT_YUV420P
-```
+# Characteristics 
+- libwebrtc 2.2.0
+- libsrtp 2.0.0
+- compile with the latest ref count branch for memory racing condition crash 
+- compile with only videoroom, audiobridge plugin
+- boringssl for performance and handshake error 
+- nginx-rtmp-module and ffmpeg compile for MCU functionalilty experiment. For example, WEBRTC-HLS, DASH, RTMP...etc
+- use --net=host for network performance. If you use docker network, some overhead might appear (ref. https://hub.docker.com/_/consul/)
 
-- docker machine create
+# Setup 
 ```
-docker-machine create -d virtualbox --virtualbox-cpu-count "4" --virtualbox-memory "5000"  --virtualbox-disk-size "200000" l1
-```
-
-- sync local
-```
-#watchman watch /Users/nakajima/akb
-#watchman -- trigger /Users/nakajima/akb buildme 'data/**/*' -- /Users/jima/webrtc/docker-janus/sync.sh
-
-
-rsync -av --delete /Users/jima/webrtc/docker-janus/data --exclude=video root@192.168.187.181:/root/
-```
-
-
 docker build -t atyenoria/janus-gateway-docker .
 docker run --rm --net=host --name="janus" -it -P -p 443:443 -p 8088:8088 -p 8004:8004/udp -p 8004:8004 -p 8089:8089 -p 8188:8188 -t atyenoria/janus-gateway-docker /bin/bash
+```
