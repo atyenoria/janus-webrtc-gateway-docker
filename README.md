@@ -22,3 +22,6 @@ docker-machine create -d virtualbox --virtualbox-cpu-count "4" --virtualbox-memo
 rsync -av --delete /Users/jima/webrtc/docker-janus/data --exclude=video root@192.168.187.181:/root/
 ```
 
+
+docker build -t atyenoria/janus-gateway-docker .
+docker run --rm --net=host --name="janus" -it -P -p 443:443 -p 8088:8088 -p 8004:8004/udp -p 8004:8004 -p 8089:8089 -p 8188:8188 -t atyenoria/janus-gateway-docker /bin/bash
