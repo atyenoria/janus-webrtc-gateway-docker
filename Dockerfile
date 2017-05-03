@@ -155,6 +155,31 @@ RUN ZLIB="zlib-1.2.11" && NGINX="1.10.3" && nginx_build=/root/nginx && cd $nginx
     --with-pcre=../pcre-8.39 --with-zlib=../$ZLIB  --with-http_ssl_module --with-stream --with-mail=dynamic --add-module=$nginx_build/nginx-rtmp-module && make && make install && mv /usr/local/nginx/nginx /usr/local/bin
 
 
+
+RUN apt-get -y update && apt-get install -y --no-install-recommends \
+        g++ \
+        gcc \
+        libc6-dev \
+        make \
+        pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV GOLANG_VERSION 1.7.5
+ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
+ENV GOLANG_DOWNLOAD_SHA256 2e4dd6c44f0693bef4e7b46cc701513d74c3cc44f2419bf519d7868b12931ac3
+
+RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
+    && echo "$GOLANG_DOWNLOAD_SHA256  golang.tar.gz" | sha256sum -c - \
+    && tar -C /usr/local -xzf golang.tar.gz \
+    && rm golang.tar.gz
+
+
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+
+
 RUN git clone https://boringssl.googlesource.com/boringssl && \
     cd boringssl && \
     sed -i s/" -Werror"//g CMakeLists.txt && \
