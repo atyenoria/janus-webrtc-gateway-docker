@@ -8,6 +8,7 @@ This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under ac
 - golang 1.7.5 for building boringssl
 - compile with the latest ref count branch for memory racing condition crash
 - compile with only videoroom, audiobridge, streaming plugin
+- enable janus-pp-rec
 - not compile datachannel
 - boringssl for performance and handshake error
 - nginx-rtmp-module and ffmpeg compile for MCU functionalilty experiment. For example, WEBRTC-HLS, DASH, RTMP...etc
