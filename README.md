@@ -7,7 +7,8 @@ This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under ac
 - openresty 1.11.2.3
 - golang 1.7.5 for building boringssl
 - compile with the latest ref count branch for memory racing condition crash
-- compile with only videoroom, audiobridge plugin
+- compile with only videoroom, audiobridge, streaming plugin
+- not compile datachannel
 - boringssl for performance and handshake error
 - nginx-rtmp-module and ffmpeg compile for MCU functionalilty experiment. For example, WEBRTC-HLS, DASH, RTMP...etc
 - use --net=host for network performance. If you use docker network, some overhead might appear (ref. https://hub.docker.com/_/consul/)
@@ -94,11 +95,6 @@ server {
          root /tmp;
          add_header Cache-Control no-cache;
      }
-
-
-
-
-
 
 }
 
