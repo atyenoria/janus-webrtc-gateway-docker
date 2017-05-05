@@ -133,28 +133,6 @@ RUN LIBWEBSOCKET="2.2.0" && vLIBWEBSOCKET="v2.2.0" && wget https://github.com/wa
     cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_C_FLAGS="-fpic" .. && \
     make && make install
 
-RUN ZLIB="zlib-1.2.11" && vNGRTMP="v1.1.10" &&  nginx_build=/root/nginx && mkdir $nginx_build && \
-    cd $nginx_build && \
-    wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.39.tar.gz && \
-    tar -zxf pcre-8.39.tar.gz && \
-    cd pcre-8.39 && \
-    ./configure && make && make install && \
-    cd $nginx_build && \
-    wget http://zlib.net/$ZLIB.tar.gz && \
-    tar -zxf $ZLIB.tar.gz && \
-    cd $ZLIB && \
-    ./configure && make &&  make install && \
-    cd $nginx_build && \
-    wget https://github.com/arut/nginx-rtmp-module/archive/$vNGRTMP.tar.gz && \
-    tar zxf $vNGRTMP.tar.gz && ls -la && mv nginx-rtmp-module-* nginx-rtmp-module
-
-RUN ZLIB="zlib-1.2.11" && NGINX="1.10.3" && nginx_build=/root/nginx && cd $nginx_build  && \
-    wget http://nginx.org/download/nginx-$NGINX.tar.gz  && \
-    tar zxf nginx-$NGINX.tar.gz && cd nginx-$NGINX && \
-    ./configure --sbin-path=/usr/local/nginx/nginx --conf-path=/usr/local/nginx/nginx.conf  --pid-path=/usr/local/nginx/nginx.pid \
-    --with-pcre=../pcre-8.39 --with-zlib=../$ZLIB  --with-http_ssl_module --with-stream --with-mail=dynamic --add-module=$nginx_build/nginx-rtmp-module && make && make install && mv /usr/local/nginx/nginx /usr/local/bin
-
-
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
         g++ \
@@ -222,3 +200,34 @@ RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && \
     ./configure --enable-post-processing --enable-boringssl --disable-data-channels --disable-rabbitmq --disable-mqtt  --disable-plugin-echotest --disable-unix-sockets --enable-dtls-settimeout \
     --disable-plugin-recordplay --disable-plugin-sip --disable-plugin-videocall --disable-plugin-voicemail --disable-plugin-textroom && \
     make && make install && make configs
+
+
+
+RUN ZLIB="zlib-1.2.11" && vNGRTMP="v1.1.11" &&  nginx_build=/root/nginx && mkdir $nginx_build && \
+    cd $nginx_build && \
+    wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.39.tar.gz && \
+    tar -zxf pcre-8.39.tar.gz && \
+    cd pcre-8.39 && \
+    ./configure && make && make install && \
+    cd $nginx_build && \
+    wget http://zlib.net/$ZLIB.tar.gz && \
+    tar -zxf $ZLIB.tar.gz && \
+    cd $ZLIB && \
+    ./configure && make &&  make install && \
+    cd $nginx_build && \
+    wget https://github.com/arut/nginx-rtmp-module/archive/$vNGRTMP.tar.gz && \
+    tar zxf $vNGRTMP.tar.gz && ls -la && mv nginx-rtmp-module-* nginx-rtmp-module
+
+# RUN ZLIB="zlib-1.2.11" && NGINX="1.11.13" && nginx_build=/root/nginx && cd $nginx_build  && \
+#     wget http://nginx.org/download/nginx-$NGINX.tar.gz  && \
+#     tar zxf nginx-$NGINX.tar.gz && cd nginx-$NGINX && \
+#     ./configure --sbin-path=/usr/local/nginx/nginx --conf-path=/usr/local/nginx/nginx.conf  --pid-path=/usr/local/nginx/nginx.pid \
+#     --with-pcre=../pcre-8.39 --with-zlib=../$ZLIB  --with-http_ssl_module --with-stream --with-mail=dynamic --add-module=$nginx_build/nginx-rtmp-module && make && make install && mv /usr/local/nginx/nginx /usr/local/bin
+
+
+RUN OPENRESTY="1.11.2.3" && ZLIB="zlib-1.2.11" && PCRE="pcre-8.39" && \
+    wget https://openresty.org/download/openresty-$OPENRESTY.tar.gz && \
+    tar zxf openresty-$OPENRESTY.tar.gz && \
+    cd openresty-$OPENRESTY && \
+    nginx_build=/root/nginx && \
+    ./configure --sbin-path=/usr/local/nginx/nginx --conf-path=/usr/local/nginx/nginx.conf  --pid-path=/usr/local/nginx/nginx.pid --with-pcre-jit --with-ipv6 --with-pcre=$nginx_build/$PCRE --with-zlib=$nginx_build/$ZLIB --with-http_ssl_module --with-stream --with-mail=dynamic --add-module=$nginx_build/nginx-rtmp-module && make && make install && mv /usr/local/nginx/nginx /usr/local/bin
