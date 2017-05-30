@@ -22,8 +22,9 @@ RUN apt-get -y update && apt-get install -y libmicrohttpd-dev \
     subversion \
     git \
     cmake \
-    lsof \
-    wget vim sudo rsync cron unzip zip mysql-client openssh-server supervisor locate
+    unzip \
+    zip \
+    lsof wget vim sudo rsync cron mysql-client openssh-server supervisor locate
 
 
 RUN mkdir ~/ffmpeg_sources
@@ -46,7 +47,7 @@ RUN cd ~/ffmpeg_sources && \
     wget http://download.videolan.org/pub/x264/snapshots/last_x264.tar.bz2 && \
     tar xjvf last_x264.tar.bz2 && \
     cd x264-snapshot* && \
-    PATH="$HOME/bin:$PATH" ./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" --enable-static --disable-opencl && \
+    PATH="$HOME/bin:$PATH" ./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" --enable-static --disable-opencl --disable-asm && \
     PATH="$HOME/bin:$PATH" make && \
     make install && \
     make distclean
@@ -120,17 +121,19 @@ RUN cd ~/ffmpeg_sources && \
     make distclean && \
     hash -r
 
-RUN git clone https://github.com/coturn/coturn.git && \
-    cd coturn && \
+RUN COTURN="4.5.0.6" && wget https://github.com/coturn/coturn/archive/$COTURN.tar.gz && \
+    tar xzvf $COTURN.tar.gz && \
+    cd coturn-$COTURN && \
     ./configure && \
     make && make install
 
-RUN LIBWEBSOCKET="2.2.0" && vLIBWEBSOCKET="v2.2.0" && wget https://github.com/warmcat/libwebsockets/archive/$vLIBWEBSOCKET.tar.gz && \
+
+RUN LIBWEBSOCKET="2.2.1" && vLIBWEBSOCKET="v2.2.1" && wget https://github.com/warmcat/libwebsockets/archive/$vLIBWEBSOCKET.tar.gz && \
     tar xzvf $vLIBWEBSOCKET.tar.gz && \
     cd libwebsockets-$LIBWEBSOCKET && \
     mkdir build && \
     cd build && \
-    cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_C_FLAGS="-fpic" .. && \
+    cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_C_FLAGS="-fpic" -DLWS_MAX_SMP=1 -DLWS_IPV6="ON" .. && \
     make && make install
 
 

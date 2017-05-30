@@ -1,9 +1,10 @@
  # Introduction
 This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under active development phase. So, as the official docs says, some minor modification of the middleware library versions happens frequently. I try to deal with such a chage as much as I can. If you need any request about this repo, free to contact me.
 
-# Characteristics
-- libwebrtc 2.2.0
+# Char acteristics
+- libwebsocket 2.2.0, build with LWS_MAX_SMP=1 for single theread processing
 - libsrtp 2.0.0
+- coturn 4.5.0.6
 - openresty 1.11.2.3
 - golang 1.7.5 for building boringssl
 - compile with the latest ref count branch for memory racing condition crash
@@ -18,6 +19,7 @@ This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under ac
 ```
 docker build -t atyenoria/janus-gateway-docker .
 docker run --rm --net=host --name="janus" -it -P -p 443:443 -p 8088:8088 -p 8004:8004/udp -p 8004:8004 -p 8089:8089 -p 8188:8188 -t atyenoria/janus-gateway-docker /bin/bash
+docker exec -it /bin/bash
 ```
 
 # RTMP -> RTP -> WEBRTC
@@ -26,6 +28,8 @@ IP=0.0.0.0
 PORT=8888
 /root/bin/ffmpeg -y -i  "rtmp://$IP:80/rtmp_relay/$1  live=1"  -c:v libx264 -profile:v main -s 640x480  -an -preset ultrafast  -tune zerolatency -f rtp  rtp://$IP:$PORT
 ```
+you should use janus streaming plugin for this
+https://github.com/meetecho/janus-gateway/blob/8b388aebb0de3ccfad3b25f940f61e48e308e604/plugins/janus_streaming.c
 
 # WEBRTC -> RTP -> RTMP
 ```
@@ -34,6 +38,17 @@ PORT=8888
 SDP_FILE=sdp.file
 /root/bin/ffmpeg -analyzeduration 300M -probesize 300M -protocol_whitelist file,udp,rtp  -i $SDP_FILE  -c:v copy -c:a aac -ar 16k -ac 1 -preset ultrafast -tune zerolatency  -f flv rtmp://$IP:$PORT/rtmp_relay/atyenoria
 ```
+In order to get the keyframe much easier, it is useful to set  fir_freq=1 in janus conf
+you should use janus video room or audiobridge plugin for this
+https://github.com/meetecho/janus-gateway/blob/8b388aebb0de3ccfad3b25f940f61e48e308e604/plugins/janus_videoroom.c
+https://github.com/meetecho/janus-gateway/blob/8b388aebb0de3ccfad3b25f940f61e48e308e604/plugins/janus_audiobridge.c
+After publishing your feed in your room, you should use rtp-forward. The sample javascript command is
+```
+# Input this in Google Chrome debug console. you must change publisher_id, room, video_port, host, secret for your conf.
+var register = { "request" : "rtp_forward", "publisher_id": 3881836128186438, "room" : 1234, "video_port": 8050, "host" : "your ip address", "secret" : "unko" }
+sfutest.send({"message": register});
+```
+
 
 # nginx.conf
 ```
