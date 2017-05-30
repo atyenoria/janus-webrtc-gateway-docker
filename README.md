@@ -1,9 +1,11 @@
+
+![system](https://github.com/atyenoria/janus-webrtc-gateway-docker/blob/master/system.png "system")
 [![Build Status](https://travis-ci.org/atyenoria/janus-gateway-docker.svg?branch=master)](https://travis-ci.org/atyenoria/janus-gateway-docker)
  # Introduction
 This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under active development phase. So, as the official docs says, some minor modification of the middleware library versions happens frequently. I try to deal with such a chage as much as I can. If you need any request about this repo, free to contact me.
 
 # Char acteristics
-- libwebsocket 2.2.0, build with LWS_MAX_SMP=1 for single theread processing
+- libwebsocket 2.2.0, build with LWS_MAX_SMP=1 for single thread processing
 - libsrtp 2.0.0
 - coturn 4.5.0.6
 - openresty 1.11.2.3
@@ -29,7 +31,7 @@ IP=0.0.0.0
 PORT=8888
 /root/bin/ffmpeg -y -i  "rtmp://$IP:80/rtmp_relay/$1  live=1"  -c:v libx264 -profile:v main -s 640x480  -an -preset ultrafast  -tune zerolatency -f rtp  rtp://$IP:$PORT
 ```
-you should use janus streaming plugin for this
+you should use janus streaming plugin <br>
 https://github.com/meetecho/janus-gateway/blob/8b388aebb0de3ccfad3b25f940f61e48e308e604/plugins/janus_streaming.c
 
 # WEBRTC -> RTP -> RTMP
@@ -39,10 +41,10 @@ PORT=8888
 SDP_FILE=sdp.file
 /root/bin/ffmpeg -analyzeduration 300M -probesize 300M -protocol_whitelist file,udp,rtp  -i $SDP_FILE  -c:v copy -c:a aac -ar 16k -ac 1 -preset ultrafast -tune zerolatency  -f flv rtmp://$IP:$PORT/rtmp_relay/atyenoria
 ```
-In order to get the keyframe much easier, it is useful to set  fir_freq=1 in janus conf
-you should use janus video room or audiobridge plugin for this
-https://github.com/meetecho/janus-gateway/blob/8b388aebb0de3ccfad3b25f940f61e48e308e604/plugins/janus_videoroom.c
-https://github.com/meetecho/janus-gateway/blob/8b388aebb0de3ccfad3b25f940f61e48e308e604/plugins/janus_audiobridge.c
+In order to get the keyframe much easier, it is useful to set  fir_freq=1 in janus conf<br>
+you should use janus video room or audiobridge plugin <br>
+https://github.com/meetecho/janus-gateway/blob/8b388aebb0de3ccfad3b25f940f61e48e308e604/plugins/janus_videoroom.c <br>
+https://github.com/meetecho/janus-gateway/blob/8b388aebb0de3ccfad3b25f940f61e48e308e604/plugins/janus_audiobridge.c <br>
 After publishing your feed in your room, you should use rtp-forward. The sample javascript command is
 ```
 # Input this in Google Chrome debug console. you must change publisher_id, room, video_port, host, secret for your conf.
