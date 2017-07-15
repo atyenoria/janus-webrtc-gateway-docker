@@ -4,7 +4,7 @@
  # Introduction
 This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under active development phase. So, as the official docs says, some minor modification of the middleware library versions happens frequently. I try to deal with such a chage as much as I can. If you need any request about this repo, free to contact me.
 
-# Char acteristics
+# Characteristics
 - libwebsocket 2.2.0, build with LWS_MAX_SMP=1 for single thread processing
 - libsrtp 2.0.0
 - coturn 4.5.0.6
@@ -13,16 +13,47 @@ This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under ac
 - compile with the latest ref count branch for memory racing condition crash
 - compile with only videoroom, audiobridge, streaming plugin
 - enable janus-pp-rec
+- GDB, Address Sanitizer(optional, see Dockerfile) for getting more info when crashing
 - not compile datachannel
 - boringssl for performance and handshake error
 - nginx-rtmp-module and ffmpeg compile for MCU functionalilty experiment. For example, WEBRTC-HLS, DASH, RTMP...etc
 - use --net=host for network performance. If you use docker network, some overhead might appear (ref. https://hub.docker.com/_/consul/)
 
+# janus ./configure
+
+```
+libsrtp version:           2.0.x
+SSL/crypto library:        BoringSSL
+DTLS set-timeout:          yes
+DataChannels support:      no
+Recordings post-processor: yes
+TURN REST API client:      no
+Doxygen documentation:     no
+Transports:
+    REST (HTTP/HTTPS):     yes
+    WebSockets:            yes (new API)
+    RabbitMQ:              no
+    MQTT:                  no
+    Unix Sockets:          no
+Plugins:
+    Echo Test:             no
+    Streaming:             yes
+    Video Call:            no
+    SIP Gateway:           no
+    Audio Bridge:          yes
+    Video Room:            yes
+    Voice Mail:            no
+    Record&Play:           no
+    Text Room:             no
+Event handlers:
+    Sample event handler:  no
+```
+
 # Setup
 ```
 docker build -t atyenoria/janus-gateway-docker .
-docker run --rm --net=host --name="janus" -it -P -p 443:443 -p 8088:8088 -p 8004:8004/udp -p 8004:8004 -p 8089:8089 -p 8188:8188 -t atyenoria/janus-gateway-docker /bin/bash
-docker exec -it /bin/bash
+docker run --rm --net=host --name="janus" -it -P -p 80:80 -p 443:443 -p 8088:8088 -p 8004:8004/udp -p 8004:8004 -p 8089:8089 -p 8188:8188 -t atyenoria/janus-gateway-docker /bin/bash
+docker exec -it /bin/bash janus
 ```
 
 # RTMP -> RTP -> WEBRTC
