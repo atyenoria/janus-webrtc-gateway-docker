@@ -51,7 +51,7 @@ Event handlers:
 
 # Setup
 ```
-docker build -t atyenoria/janus-gateway-docker .
+docker build --no-cache -t atyenoria/janus-gateway-docker .
 docker run --rm --net=host --name="janus" -it -P -p 80:80 -p 443:443 -p 8088:8088 -p 8004:8004/udp -p 8004:8004 -p 8089:8089 -p 8188:8188 -t atyenoria/janus-gateway-docker /bin/bash
 docker exec -it /bin/bash janus
 ```

@@ -109,7 +109,6 @@ RUN cd ~/ffmpeg_sources && \
     --enable-libass \
     --enable-libfdk-aac \
     --enable-libfreetype \
-    --enable-libmp3lame \
     --enable-libopus \
     --enable-libtheora \
     --enable-libvorbis \
@@ -161,6 +160,9 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
 
+
+# If you want to use the openssl instead of boringssl
+# RUN apt-get update -y && apt-get install -y libssl-dev
 RUN git clone https://boringssl.googlesource.com/boringssl && \
     cd boringssl && \
     sed -i s/" -Werror"//g CMakeLists.txt && \
@@ -176,8 +178,10 @@ RUN git clone https://boringssl.googlesource.com/boringssl && \
     sudo cp build/crypto/libcrypto.a /opt/boringssl/lib/
 
 
-# RUN apt-get update -y && apt-get install -y libssl-dev
 
+
+
+# If you want to change the libnice version, set this.
 # RUN apt-get -y remove libnice-dev
 # RUN apt-get -y update && apt-get install -y gtk-doc-tools
 # RUN LIBNICE="0.1.13" && wget https://github.com/libnice/libnice/archive/$LIBNICE.zip && \
