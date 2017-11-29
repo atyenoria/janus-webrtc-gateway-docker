@@ -211,7 +211,9 @@ RUN GDB="8.0" && wget ftp://sourceware.org/pub/gdb/releases/gdb-$GDB.tar.gz && \
 
 
 # ./configure CFLAGS="-fsanitize=address -fno-omit-frame-pointer" LDFLAGS="-lasan"
-RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && \
+
+# RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && \
+RUN cd / && git clone https://github.com/danotrilogic/janus-gateway.git && \
     cd janus-gateway && \
     sh autogen.sh && cd /janus-gateway && \
     git checkout origin/master && \
