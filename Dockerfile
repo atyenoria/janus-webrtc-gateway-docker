@@ -120,7 +120,7 @@ RUN cd ~/ffmpeg_sources && \
     make distclean && \
     hash -r
 
-RUN COTURN="4.5.0.6" && wget https://github.com/coturn/coturn/archive/$COTURN.tar.gz && \
+RUN COTURN="4.5.0.7" && wget https://github.com/coturn/coturn/archive/$COTURN.tar.gz && \
     tar xzvf $COTURN.tar.gz && \
     cd coturn-$COTURN && \
     ./configure && \

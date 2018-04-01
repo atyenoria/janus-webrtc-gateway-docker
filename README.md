@@ -7,7 +7,7 @@ This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under ac
 # Characteristics
 - libwebsocket 2.2.0, build with LWS_MAX_SMP=1 for single thread processing
 - libsrtp 2.0.0
-- coturn 4.5.0.6
+- coturn 4.5.0.7
 - openresty 1.11.2.3
 - golang 1.7.5 for building boringssl
 - compile with the latest ref count branch for memory racing condition crash
