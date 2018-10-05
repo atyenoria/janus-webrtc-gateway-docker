@@ -217,7 +217,7 @@ RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && \
     sh autogen.sh && cd /janus-gateway && \
     git checkout origin/master && \
     ./configure --enable-post-processing --enable-boringssl --disable-data-channels --disable-rabbitmq --disable-mqtt  --disable-plugin-echotest --disable-unix-sockets --enable-dtls-settimeout \
-    --disable-plugin-recordplay --disable-plugin-sip --disable-plugin-videocall --disable-plugin-voicemail --disable-plugin-textroom && \
+    --disable-plugin-recordplay --disable-plugin-sip --disable-plugin-videocall --disable-plugin-voicemail --disable-plugin-lua && \
     make && make install && make configs
 
 
