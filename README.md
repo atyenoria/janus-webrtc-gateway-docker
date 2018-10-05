@@ -55,6 +55,15 @@ Event handlers:
 docker build --no-cache -t atyenoria/janus-gateway-docker .
 docker run --rm --net=host --name="janus" -it -P -p 80:80 -p 443:443 -p 8088:8088 -p 8004:8004/udp -p 8004:8004 -p 8089:8089 -p 8188:8188 -t atyenoria/janus-gateway-docker /bin/bash
 docker exec -it /bin/bash janus
+
+You might want to start Janus directly upon launching the container:
+
+docker run -d --rm --net=host --name="janus" -it -P -p 80:80 -p 443:443 -p 8088:8088 -p 8004:8004/udp -p 8004:8004 -p 8089:8089 -p 8188:8188 -t atyenoria/janus-gateway-docker /janus-gateway/janus
+
+You could then consult the logs (stdout) with the following command while you can you use "docker exec -it /bin/bash janus" to get a shell in the container:
+
+docker logs janus
+
 ```
 You should read the official doc https://janus.conf.meetecho.com/index.html carefully.
 # RTMP -> RTP -> WEBRTC
