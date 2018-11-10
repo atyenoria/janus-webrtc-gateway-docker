@@ -39,8 +39,6 @@ https://webrtchacks.com/sfu-load-testing/
 ![load-test](https://github.com/atyenoria/janus-webrtc-gateway-docker/blob/master/load-test.png "load-test")
 (right side janus graph is available for this docker image )
 
-
-
 # Janus WebRTC Gateway vs Jitsi Video Bridge(Personal Opinion)
 I think that janus is better for webinar(web seminar), and jitsi is better for web conference system. 
 The scalability of the current Jitsi Video Bridge(20181007) is poor because of having no local recording file(I'm not sure of this..).  https://www.youtube.com/watch?v=OHHoqKCjJ0E 
@@ -48,6 +46,10 @@ Jitsi last-n + VP8 simulcasting has the very good performance for web conference
 For the video format, janus recording is per video streaming, jitsi is for mixed video conference by using chrome headlesss + ffmpeg(alsa, libxcb).
 From these points, janus is suitable for webinar, jitsi is for web conference.
 Of course, both WebRTC SFU are amazing work!! I'm using both.
+
+
+# [wip]Network benchmarking for preparing WebRTC SFU development
+use iperf, netperf
 
 # Dockerfile Characteristics
 - libwebsocket v3.0.1, build with LWS_MAX_SMP=1, ipv6=true for single thread processing
@@ -136,7 +138,7 @@ sfutest.send({"message": register});
 ```
 
 
-# Mixing for janus recording (preparing)
+# [wip] Mixing for janus recording
 1. ffmpeg mixing from the janus recording outputs files
 I think that it is very difficult to align the file from the  multiples timestamps in the case of the long mp4 file. you may consider the lipsync.
 ```
