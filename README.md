@@ -17,6 +17,7 @@ https://www.blockchain.com/btc/address/3ESGqXHuaRqFCnAFSvBjJTfiqPc5Kn8xgc?sort=0
 
 # TODO
 - [x] janus docker image
+- [x] janus performance improvement patch
 - [ ] jitsi vide bridge image ( in other repo)
 - [ ] example app for transcording 
 - [ ] demo site for RTMP -> RTP -> WEBRTC
@@ -30,7 +31,15 @@ https://www.blockchain.com/btc/address/3ESGqXHuaRqFCnAFSvBjJTfiqPc5Kn8xgc?sort=0
 This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under active development phase. So, as the official docs says, some minor modification of the middleware library versions happens frequently. I try to deal with such a chage as much as I can. If you need any request about this repo, free to contact me. About the details of setup for this docker image, you should read the official docs https://janus.conf.meetecho.com/index.html carefully. 
 
 # Janus WebRTC Gateway Stability
-tag v0.4.4 looks stable for my simple test. I will strongly recommend this version. 
+tag v0.4.5 looks stable for my simple test. I will strongly recommend this version. 
+
+# Janus WebRTC Gateway Performance 
+With the latest libnice, janus gateway seems to be great performance. This repo contains this patch(see https://gitlab.freedesktop.org/libnice/libnice/merge_requests/13 )
+https://webrtchacks.com/sfu-load-testing/ 
+![load-test](https://github.com/atyenoria/janus-webrtc-gateway-docker/blob/master/load-test.png "load-test")
+(right side janus graph is available for this docker image )
+
+
 
 # Janus WebRTC Gateway vs Jitsi Video Bridge(Personal Opinion)
 I think that janus is better for webinar(web seminar), and jitsi is better for web conference system. 
@@ -48,7 +57,8 @@ Of course, both WebRTC SFU are amazing work!! I'm using both.
 - boringssl stable https://boringssl.googlesource.com/boringssl/+/chromium-stable 
 - libnice v0.1.14 https://github.com/libnice/libnice/releases/tag/0.1.14 
 - golang 1.7.5 for building boringssl
-- jaunus compile with videoroom, streaming plugin, janus-pp-rec
+- janus v0.4.5
+- libnice from the latest gitlab https://gitlab.freedesktop.org/libnice/libnice  (removing global lock for improving janus gateway)
 - [optional]GDB, Address Sanitizer(optional, see Dockerfile) for getting more info when crashing
 - nginx-rtmp-module and ffmpeg compile for MCU functionalilty experiment. For example, WEBRTC-HLS, DASH, RTMP...etc
 - use --net=host for network performance. If you use docker network, some overhead might appear (ref. https://hub.docker.com/_/consul/)

@@ -230,9 +230,9 @@ RUN apt-get remove -y libnice-dev libnice10 && \
     apt-get update && \
     apt-get install -y gtk-doc-tools libgnutls28-dev -t jessie-backports  && \
     apt-get install -y libglib2.0-0 -t jessie-backports && \
-    git clone https://github.com/libnice/libnice && \
+    git clone https://gitlab.freedesktop.org/libnice/libnice.git && \
     cd libnice && \
-    git checkout 6bfea0d063fb358a44e8800eae314520a2babd61 && \
+    git checkout 5496500b1535d9343fdac2a3408864643fe65d7e && \
     bash autogen.sh && \
     ./configure --prefix=/usr && \
     make && \
@@ -260,7 +260,7 @@ RUN COTURN="4.5.0.8" && wget https://github.com/coturn/coturn/archive/$COTURN.ta
 RUN cd / && git clone https://github.com/meetecho/janus-gateway.git
 RUN cd /janus-gateway && \
     sh autogen.sh &&  \
-    git checkout origin/master && git reset --hard 2a3ffe1fd5f662179160662a4d9b27adbdb3a0f3 && \
+    git checkout origin/master && git reset --hard 3ff54ec7f4d26817fa000c614762e99bcd6a3da0 && \
     PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
     --enable-post-processing \
     --enable-boringssl \
