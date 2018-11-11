@@ -280,10 +280,10 @@ RUN cd /janus-gateway && \
     --disable-all-handlers && \
     make && make install && make configs
 
-RUN apt-get -y install iperf 
-RUN git clone https://github.com/HewlettPackard/netperf.git && \
-    cd netperf && \
-    bash autogen.sh && \
-    ./configure && \
-    make && \
-    make install 
+# RUN apt-get -y install iperf iperf3
+# RUN git clone https://github.com/HewlettPackard/netperf.git && \
+#     cd netperf && \
+#     bash autogen.sh && \
+#     ./configure && \
+#     make && \
+#     make install 
