@@ -14,6 +14,7 @@ RUN apt-get -y update && apt-get install -y libmicrohttpd-dev \
     libogg-dev \
     libini-config-dev \
     libcollection-dev \
+    libconfig-dev \
     pkg-config \
     gengetopt \
     libtool \
