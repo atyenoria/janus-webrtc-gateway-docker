@@ -269,10 +269,11 @@ RUN cd /usrsctp && \
 
 
 
+# tag v0.6.0 https://github.com/meetecho/janus-gateway/commit/ffa40ab3d7fb1195f49a912093b468a53a3f031b
 RUN cd / && git clone https://github.com/meetecho/janus-gateway.git
 RUN cd /janus-gateway && \
     sh autogen.sh &&  \
-    git checkout origin/master && git reset --hard 3ff54ec7f4d26817fa000c614762e99bcd6a3da0 && \
+    git checkout origin/master && git reset --hard ffa40ab3d7fb1195f49a912093b468a53a3f031b && \ 
     PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
     --enable-post-processing \
     --enable-boringssl \
