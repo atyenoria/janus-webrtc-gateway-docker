@@ -56,15 +56,16 @@ RUN VPX="1.5.0" && cd ~/ffmpeg_sources && \
     make clean
 
 
-# error with janus audiobridge compiling?
-RUN OPUS="1.1.2" && cd ~/ffmpeg_sources && \
+RUN OPUS="1.3" && cd ~/ffmpeg_sources && \
     wget http://downloads.xiph.org/releases/opus/opus-$OPUS.tar.gz && \
     tar xzvf opus-$OPUS.tar.gz && \
     cd opus-$OPUS && \
-    ./configure --prefix="$HOME/ffmpeg_build" --disable-shared && \
+    ./configure --help && \
+    ./configure --prefix="$HOME/ffmpeg_build"  && \
     make && \
     make install && \
     make clean
+
 
 RUN LAME="3.100" && apt-get install -y nasm  && cd ~/ffmpeg_sources && \
     wget http://downloads.sourceforge.net/project/lame/lame/$LAME/lame-$LAME.tar.gz && \
@@ -258,6 +259,16 @@ RUN COTURN="4.5.0.8" && wget https://github.com/coturn/coturn/archive/$COTURN.ta
 # ./configure CFLAGS="-fsanitize=address -fno-omit-frame-pointer" LDFLAGS="-lasan"
 
 
+# datachannel build
+RUN cd / && git clone https://github.com/sctplab/usrsctp.git
+RUN cd /usrsctp && \
+    git checkout origin/master && git reset --hard 9acc88ce3abfa72bf780cc87975cc8e883181a32 && \
+    ./bootstrap && \
+    ./configure && \
+    make && make install
+
+
+
 RUN cd / && git clone https://github.com/meetecho/janus-gateway.git
 RUN cd /janus-gateway && \
     sh autogen.sh &&  \
@@ -265,20 +276,20 @@ RUN cd /janus-gateway && \
     PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
     --enable-post-processing \
     --enable-boringssl \
-    --disable-data-channels \
+    --enable-data-channels \
     --disable-rabbitmq \
     --disable-mqtt \
-    --disable-plugin-echotest \
     --disable-unix-sockets \
     --enable-dtls-settimeout \
-    --disable-plugin-recordplay \
-    --disable-plugin-sip \
-    --disable-plugin-videocall \
-    --disable-plugin-voicemail \
-    --disable-plugin-textroom \
-    --disable-plugin-audiobridge \
-    --disable-plugin-nosip \
-    --disable-all-handlers && \
+    --enable-plugin-echotest \
+    --enable-plugin-recordplay \
+    --enable-plugin-sip \
+    --enable-plugin-videocall \
+    --enable-plugin-voicemail \
+    --enable-plugin-textroom \
+    --enable-plugin-audiobridge \
+    --enable-plugin-nosip \
+    --enable-all-handlers && \
     make && make install && make configs
 
 # RUN apt-get -y install iperf iperf3
