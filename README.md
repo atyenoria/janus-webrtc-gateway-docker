@@ -31,7 +31,7 @@ https://www.blockchain.com/btc/address/3ESGqXHuaRqFCnAFSvBjJTfiqPc5Kn8xgc?sort=0
 This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under active development phase. So, as the official docs says, some minor modification of the middleware library versions happens frequently. I try to deal with such a chage as much as I can. If you need any request about this repo, free to contact me. About the details of setup for this docker image, you should read the official docs https://janus.conf.meetecho.com/index.html carefully. 
 
 # Janus WebRTC Gateway Stability
-tag v0.4.5 looks stable for my simple test. I will strongly recommend this version. 
+tag v0.6.0 looks stable for my simple test. I will strongly recommend this version. 
 
 # Janus WebRTC Gateway Performance 
 With the latest libnice, janus gateway seems to be great performance. This repo contains this patch(see https://gitlab.freedesktop.org/libnice/libnice/merge_requests/13 )
@@ -74,7 +74,8 @@ use iperf, netperf
 libsrtp version:           2.x
 SSL/crypto library:        BoringSSL
 DTLS set-timeout:          yes
-DataChannels support:      no
+Mutex implementation:      GMutex (native futex on Linux)
+DataChannels support:      yes
 Recordings post-processor: yes
 TURN REST API client:      yes
 Doxygen documentation:     no
@@ -86,17 +87,17 @@ Transports:
     Unix Sockets:          no
     Nanomsg:               no
 Plugins:
-    Echo Test:             no
+    Echo Test:             yes
     Streaming:             yes
-    Video Call:            no
-    SIP Gateway (Sofia):   no
+    Video Call:            yes
+    SIP Gateway (Sofia):   yes
     SIP Gateway (libre):   no
-    NoSIP (RTP Bridge):    no
+    NoSIP (RTP Bridge):    yes
     Audio Bridge:          yes
     Video Room:            yes
-    Voice Mail:            no
-    Record&Play:           no
-    Text Room:             no
+    Voice Mail:            yes
+    Record&Play:           yes
+    Text Room:             yes
     Lua Interpreter:       no
     Duktape Interpreter:   no
 Event handlers:
