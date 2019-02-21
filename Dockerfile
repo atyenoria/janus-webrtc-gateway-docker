@@ -225,8 +225,7 @@ RUN SRTP="2.2.0" && apt-get remove -y libsrtp0-dev && wget https://github.com/ci
 
 
 
-
-# libnice tag: 0.1.14 6bfea0d063fb358a44e8800eae314520a2babd61
+# 15 Feb, 2019 1 commit 926afef019ca9f297cebbe13479159ac5c087f00
 RUN apt-get remove -y libnice-dev libnice10 && \
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
     apt-get update && \
@@ -234,7 +233,7 @@ RUN apt-get remove -y libnice-dev libnice10 && \
     apt-get install -y libglib2.0-0 -t jessie-backports && \
     git clone https://gitlab.freedesktop.org/libnice/libnice.git && \
     cd libnice && \
-    git checkout 5496500b1535d9343fdac2a3408864643fe65d7e && \
+    git checkout 926afef019ca9f297cebbe13479159ac5c087f00 && \
     bash autogen.sh && \
     ./configure --prefix=/usr && \
     make && \
