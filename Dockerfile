@@ -208,7 +208,7 @@ RUN git clone https://boringssl.googlesource.com/boringssl && \
     sudo cp build/crypto/libcrypto.a /opt/boringssl/lib/
 
 
-RUN LIBWEBSOCKET="3.0.1" && wget https://github.com/warmcat/libwebsockets/archive/v$LIBWEBSOCKET.tar.gz && \
+RUN LIBWEBSOCKET="3.1.0" && wget https://github.com/warmcat/libwebsockets/archive/v$LIBWEBSOCKET.tar.gz && \
     tar xzvf v$LIBWEBSOCKET.tar.gz && \
     cd libwebsockets-$LIBWEBSOCKET && \
     mkdir build && \
@@ -260,20 +260,18 @@ RUN COTURN="4.5.0.8" && wget https://github.com/coturn/coturn/archive/$COTURN.ta
 
 
 # datachannel build
-RUN cd / && git clone https://github.com/sctplab/usrsctp.git
-RUN cd /usrsctp && \
-    git checkout origin/master && git reset --hard 9acc88ce3abfa72bf780cc87975cc8e883181a32 && \
+RUN cd / && git clone https://github.com/sctplab/usrsctp.git && cd /usrsctp && \
+    git checkout origin/master && git reset --hard 1c9c82fbe3582ed7c474ba4326e5929d12584005 && \
     ./bootstrap && \
     ./configure && \
     make && make install
 
 
 
-# tag v0.6.0 https://github.com/meetecho/janus-gateway/commit/ffa40ab3d7fb1195f49a912093b468a53a3f031b
-RUN cd / && git clone https://github.com/meetecho/janus-gateway.git
-RUN cd /janus-gateway && \
+# tag v0.6.1 https://github.com/meetecho/janus-gateway/commit/f7b02e767debae86f1cea9880e3e29162bb79d30
+RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && cd /janus-gateway && \
     sh autogen.sh &&  \
-    git checkout origin/master && git reset --hard ffa40ab3d7fb1195f49a912093b468a53a3f031b && \ 
+    git checkout origin/master && git reset --hard f7b02e767debae86f1cea9880e3e29162bb79d30 && \ 
     PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
     --enable-post-processing \
     --enable-boringssl \
@@ -291,7 +289,7 @@ RUN cd /janus-gateway && \
     --enable-plugin-audiobridge \
     --enable-plugin-nosip \
     --enable-all-handlers && \
-    make && make install && make configs
+    make && make install && make configs && ldconfig
 
 # RUN apt-get -y install iperf iperf3
 # RUN git clone https://github.com/HewlettPackard/netperf.git && \
