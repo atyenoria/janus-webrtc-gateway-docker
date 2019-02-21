@@ -8,3 +8,10 @@ build-nocache:
 
 bash: 
 	@docker run --rm --net=host --name="janus" -it -t atyenoria/$(TEMPLATE_NAME) /bin/bash
+
+run: 
+	@docker run --rm --net=host --name="janus" -it -t atyenoria/$(TEMPLATE_NAME) 
+
+
+run-hide: 
+	@docker run --rm --net=host --name="janus" -it -t atyenoria/$(TEMPLATE_NAME) >> /dev/null 

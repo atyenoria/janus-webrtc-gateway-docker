@@ -291,6 +291,10 @@ RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && cd /janus
     --enable-all-handlers && \
     make && make install && make configs && ldconfig
 
+COPY nginx.conf /usr/local/nginx/nginx.conf
+
+CMD nginx && janus
+
 # RUN apt-get -y install iperf iperf3
 # RUN git clone https://github.com/HewlettPackard/netperf.git && \
 #     cd netperf && \

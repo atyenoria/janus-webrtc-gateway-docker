@@ -13,6 +13,22 @@ My bitcoin Address
 https://www.blockchain.com/btc/address/3ESGqXHuaRqFCnAFSvBjJTfiqPc5Kn8xgc?sort=0 
 
 
+sed -i -e "/@host/c\      @host = \'$ENV_HOST_DOMAIN\'" $API_PATH/lib/janus_gateway/client.rb
+
+
+
+# How to use
+
+https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
+
+```
+git clone https://github.com/atyenoria/janus-webrtc-gateway-docker.git && cd janus-webrtc-gateway-docker
+make build
+make run
+```
+- open in firefox (chrome can't work with http url)
+- use the host having global ip 
+
 
 
 # TODO
@@ -104,13 +120,7 @@ Event handlers:
 JavaScript modules:        no
 ```
 
-# Setup
-```
-docker build --no-cache -t atyenoria/janus-gateway-docker .
-docker run --rm --net=host --name="janus" -it -t atyenoria/janus-gateway-docker /bin/bash
-docker exec -it /bin/bash janus
-```
-You should read the official doc https://janus.conf.meetecho.com/index.html carefully.
+
 # RTMP -> RTP -> WEBRTC
 ```
 IP=0.0.0.0
