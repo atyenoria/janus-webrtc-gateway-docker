@@ -5,13 +5,14 @@
 
 
 
-# Donation for transcoding developing 
-The reason for fundrasing is that developing transcording demo app is very heavy... But Many people want that!!!!
+~~Donation for transcoding developing
+The reason for fundrasing is that developing transcording demo app is very heavy... But Many people want that!!!!~~
 
-My bitcoin Address
+~~My bitcoin Address
 3ESGqXHuaRqFCnAFSvBjJTfiqPc5Kn8xgc
-https://www.blockchain.com/btc/address/3ESGqXHuaRqFCnAFSvBjJTfiqPc5Kn8xgc?sort=0 
+https://www.blockchain.com/btc/address/3ESGqXHuaRqFCnAFSvBjJTfiqPc5Kn8xgc?sort=0~~
 
+**Star This repo instead of bitcoin. I gave up fundrasing...**
 
 sed -i -e "/@host/c\      @host = \'$ENV_HOST_DOMAIN\'" $API_PATH/lib/janus_gateway/client.rb
 
