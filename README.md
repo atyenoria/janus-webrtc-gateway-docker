@@ -3,44 +3,18 @@
 [![Build Status](https://travis-ci.org/atyenoria/janus-webrtc-gateway-docker.svg?branch=master)](https://travis-ci.org/atyenoria/janus-webrtc-gateway-docker)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1939/badge)](https://bestpractices.coreinfrastructure.org/projects/1939)
 
-
-
-~~Donation for transcoding developing
-The reason for fundrasing is that developing transcording demo app is very heavy... But Many people want that!!!!~~
-
-~~My bitcoin Address
-3ESGqXHuaRqFCnAFSvBjJTfiqPc5Kn8xgc
-https://www.blockchain.com/btc/address/3ESGqXHuaRqFCnAFSvBjJTfiqPc5Kn8xgc?sort=0~~
-
-**Star This repo instead of bitcoin. I gave up fundrasing...**
-
-sed -i -e "/@host/c\      @host = \'$ENV_HOST_DOMAIN\'" $API_PATH/lib/janus_gateway/client.rb
-
-
-
 # How to use
 
 https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
 
 ```
-git clone https://github.com/atyenoria/janus-webrtc-gateway-docker.git && cd janus-webrtc-gateway-docker
-make build
-make run
+1. git clone https://github.com/atyenoria/janus-webrtc-gateway-docker.git && cd janus-webrtc-gateway-docker
+2. make build
+3. make run
+4. star this repository after succeeding 
 ```
 - open in firefox (chrome can't work with http url)
 - use the host having global ip 
-
-
-
-# TODO
-- [x] janus docker image
-- [x] janus performance improvement patch
-- [ ] jitsi vide bridge image ( in other repo)
-- [ ] example app for transcording 
-- [ ] demo site for RTMP -> RTP -> WEBRTC
-- [ ] demo site for WEBRTC -> RTP -> RTMP
-- [ ] client video mixing in janus gateway
-- [ ] rtp => HLS with ffmpeg using GPU transcording 
 
 # Dockerfile Characteristics
 - libwebsocket v3.1.0, build with LWS_MAX_SMP=1, ipv6=true for single thread processing
@@ -240,6 +214,20 @@ server {
 }
 
 ```
+
+
+
+# TODO
+- [x] janus docker image
+- [x] janus performance improvement patch
+- [ ] jitsi vide bridge image ( in other repo)
+- [ ] example app for transcording 
+- [ ] demo site for RTMP -> RTP -> WEBRTC
+- [ ] demo site for WEBRTC -> RTP -> RTMP
+- [ ] client video mixing in janus gateway
+- [ ] rtp => HLS with ffmpeg using GPU transcording 
+
+
 
 # Project Contributor  
 Akinori Nakajima
