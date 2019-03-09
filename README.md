@@ -25,7 +25,7 @@ https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
 - boringssl stable https://boringssl.googlesource.com/boringssl/+/chromium-stable 
 - libnice v0.1.14 https://github.com/libnice/libnice/releases/tag/0.1.14 
 - golang 1.7.5 for building boringssl
-- janus v0.6.1, enable all janus plugins(like videoroom, streaming, audiobridge...etc)
+- janus v0.6.2, enable all janus plugins(like videoroom, streaming, audiobridge...etc)
 - libnice from the latest gitlab https://gitlab.freedesktop.org/libnice/libnice  (removing global lock for improving janus gateway)
 - [optional] GDB, Address Sanitizer(optional, see Dockerfile) for getting more info when crashing
 - nginx-rtmp-module and ffmpeg compile for MCU functionalilty experiment. For example, WEBRTC-HLS, DASH, RTMP...etc
@@ -36,8 +36,6 @@ https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
  # Introduction
 This is a docker image for Janus Webrtc Gateway. Janus Gateway is still under active development phase. So, as the official docs says, some minor modification of the middleware library versions happens frequently. I try to deal with such a chage as much as I can. If you need any request about this repo, free to contact me. About the details of setup for this docker image, you should read the official docs https://janus.conf.meetecho.com/index.html carefully. 
 
-# Janus WebRTC Gateway Stability
-tag v0.6.1 looks stable for my simple test. I will strongly recommend this version. 
 
 # Janus WebRTC Gateway Performance 
 With the latest libnice, janus gateway seems to be great performance. This repo contains this patch(see https://gitlab.freedesktop.org/libnice/libnice/merge_requests/13 )
