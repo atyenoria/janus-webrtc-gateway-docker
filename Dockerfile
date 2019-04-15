@@ -227,8 +227,8 @@ RUN SRTP="2.2.0" && apt-get remove -y libsrtp0-dev && wget https://github.com/ci
 
 # 8 March, 2019 1 commit 67807a17ce983a860804d7732aaf7d2fb56150ba
 RUN apt-get remove -y libnice-dev libnice10 && \
-    echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
-    apt-get update && \
+    echo "deb http://archive.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
+    apt-get -o Acquire::Check-Valid-Until=false update && \
     apt-get install -y gtk-doc-tools libgnutls28-dev -t jessie-backports  && \
     apt-get install -y libglib2.0-0 -t jessie-backports && \
     git clone https://gitlab.freedesktop.org/libnice/libnice.git && \
