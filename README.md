@@ -11,7 +11,7 @@ https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
 1. git clone https://github.com/atyenoria/janus-webrtc-gateway-docker.git && cd janus-webrtc-gateway-docker
 2. make build
 3. make run
-4. star this repository after succeeding 
+4. star this repository after succeeding. Create the issue if you failed. We will help you as much as possible
 ```
 - open in firefox (chrome can't work with http url)
 - use the host having global ip 
