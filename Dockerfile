@@ -38,10 +38,10 @@ RUN apt-get update && \
     libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev
 
 RUN YASM="1.3.0" && cd ~/ffmpeg_sources && \
-    wget http://www.tortall.net/projects/yasm/releases/yasm-$YASM.tar.gz && \
-    tar xzvf yasm-$YASM.tar.gz && \
+    wget https://github.com/yasm/yasm/archive/v$YASM.zip && \
+    unzip v$YASM.zip && \
     cd yasm-$YASM && \
-    ./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin"  && \
+    ./autogen.sh --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin"  && \
     make && \
     make install && \
     make distclean
