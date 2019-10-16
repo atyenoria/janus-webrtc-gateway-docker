@@ -94,11 +94,11 @@ RUN FDK_AAC="0.1.4" && cd ~/ffmpeg_sources && \
     make install && \
     make distclean
 
-RUN FFMPEG_VER="n4.0.2" && cd ~/ffmpeg_sources && \
+RUN FFMPEG_VER="n4.2.1" && cd ~/ffmpeg_sources && \
     wget https://github.com/FFmpeg/FFmpeg/archive/$FFMPEG_VER.zip && \
     unzip $FFMPEG_VER.zip
 
-RUN FFMPEG_VER="n4.0.2" && cd ~/ffmpeg_sources && \
+RUN FFMPEG_VER="n4.2.1" && cd ~/ffmpeg_sources && \
     cd FFmpeg-$FFMPEG_VER && \
     PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
     --prefix="$HOME/ffmpeg_build" \
@@ -267,10 +267,10 @@ RUN cd / && git clone https://github.com/sctplab/usrsctp.git && cd /usrsctp && \
 
 
 
-# tag v0.6.2 https://github.com/meetecho/janus-gateway/commit/ddbf37fef43ade61d73173c7661a2449c13582d4
+# tag v0.7.4 https://github.com/meetecho/janus-gateway/commit/5ff6907fc9cc6c64d8dc3342969abebad74cc964
 RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && cd /janus-gateway && \
     sh autogen.sh &&  \
-    git checkout origin/master && git reset --hard ddbf37fef43ade61d73173c7661a2449c13582d4 && \ 
+    git checkout origin/master && git reset --hard 5ff6907fc9cc6c64d8dc3342969abebad74cc964 && \ 
     PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
     --enable-post-processing \
     --enable-boringssl \
