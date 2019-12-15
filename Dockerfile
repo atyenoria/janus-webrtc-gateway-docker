@@ -1,4 +1,4 @@
-FROM buildpack-deps:jessie
+FROM buildpack-deps:stretch
 
 RUN sed -i 's/archive.ubuntu.com/mirror.aarnet.edu.au\/pub\/ubuntu\/archive/g' /etc/apt/sources.list
 
@@ -46,10 +46,11 @@ RUN YASM="1.3.0" && cd ~/ffmpeg_sources && \
     make install && \
     make distclean
 
-RUN VPX="1.5.0" && cd ~/ffmpeg_sources && \
-    wget http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.5.0.tar.bz2 && \
-    tar xjvf libvpx-$VPX.tar.bz2 && \
-    cd libvpx-$VPX && \
+RUN VPX="v1.8.1" && cd ~/ffmpeg_sources && \
+    wget https://chromium.googlesource.com/webm/libvpx/+archive/$VPX.tar.gz && \
+    tar xzvf $VPX.tar.gz && \
+    pwd \
+    cd $VPX && \
     PATH="$HOME/bin:$PATH" ./configure --prefix="$HOME/ffmpeg_build" --disable-examples --disable-unit-tests && \
     PATH="$HOME/bin:$PATH" make && \
     make install && \
@@ -84,7 +85,7 @@ RUN X264="20181001-2245-stable" && cd ~/ffmpeg_sources && \
     make install && \
     make distclean
 
-RUN FDK_AAC="0.1.4" && cd ~/ffmpeg_sources && \
+RUN FDK_AAC="2.0.1" && cd ~/ffmpeg_sources && \
     wget -O fdk-aac.tar.gz https://github.com/mstorsjo/fdk-aac/archive/v$FDK_AAC.tar.gz && \
     tar xzvf fdk-aac.tar.gz && \
     cd fdk-aac-$FDK_AAC && \
@@ -146,7 +147,7 @@ RUN ZLIB="zlib-1.2.11" && vNGRTMP="v1.1.11" && PCRE="8.41" && nginx_build=/root/
     tar zxf $vNGRTMP.tar.gz && mv nginx-rtmp-module-* nginx-rtmp-module
 
 
-RUN OPENRESTY="1.13.6.1" && ZLIB="zlib-1.2.11" && PCRE="pcre-8.41" &&  openresty_build=/root/openresty && mkdir $openresty_build && \
+RUN OPENRESTY="1.13.6.2" && ZLIB="zlib-1.2.11" && PCRE="pcre-8.41" &&  openresty_build=/root/openresty && mkdir $openresty_build && \
     wget https://openresty.org/download/openresty-$OPENRESTY.tar.gz && \
     tar zxf openresty-$OPENRESTY.tar.gz && \
     cd openresty-$OPENRESTY && \
@@ -227,10 +228,9 @@ RUN SRTP="2.2.0" && apt-get remove -y libsrtp0-dev && wget https://github.com/ci
 
 # 8 March, 2019 1 commit 67807a17ce983a860804d7732aaf7d2fb56150ba
 RUN apt-get remove -y libnice-dev libnice10 && \
-    echo "deb http://archive.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
-    apt-get -o Acquire::Check-Valid-Until=false update && \
-    apt-get install -y gtk-doc-tools libgnutls28-dev -t jessie-backports  && \
-    apt-get install -y libglib2.0-0 -t jessie-backports && \
+    echo "deb http://deb.debian.org/debian  stretch-backports main" >> /etc/apt/sources.list && \
+    apt-get  update && \
+    apt-get install -y gtk-doc-tools libgnutls28-dev -t stretch-backports  && \
     git clone https://gitlab.freedesktop.org/libnice/libnice.git && \
     cd libnice && \
     git checkout 67807a17ce983a860804d7732aaf7d2fb56150ba && \
@@ -300,4 +300,4 @@ CMD nginx && janus
 #     bash autogen.sh && \
 #     ./configure && \
 #     make && \
-#     make install 
+#     make install

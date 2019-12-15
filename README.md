@@ -19,13 +19,13 @@ https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
 # Dockerfile Characteristics
 - libwebsocket v3.1.0, build with LWS_MAX_SMP=1, ipv6=true for single thread processing
 - libsrtp v2.2.0
-- ffmpeg 4.0.2 with vpx, libx264, alsa(for headless chrome screen caputreing)
+- ffmpeg 4.2.1 with vpx, libx264, alsa(for headless chrome screen caputreing)
 - coturn v4.5.0.8 in order to test turn, use iceTransportPolicy=relay https://www.w3.org/TR/webrtc/#rtcicetransportpolicy-enum 
-- openresty 1.13.6.1
+- openresty 1.13.6.2
 - boringssl stable https://boringssl.googlesource.com/boringssl/+/chromium-stable 
 - libnice v0.1.14 https://github.com/libnice/libnice/releases/tag/0.1.14 
 - golang 1.7.5 for building boringssl
-- janus v0.7.4, enable all janus plugins(like videoroom, streaming, audiobridge...etc)
+- janus v0.8.0, enable all janus plugins(like videoroom, streaming, audiobridge...etc)
 - libnice from the latest gitlab https://gitlab.freedesktop.org/libnice/libnice  (removing global lock for improving janus gateway)
 - [optional] GDB, Address Sanitizer(optional, see Dockerfile) for getting more info when crashing
 - nginx-rtmp-module and ffmpeg compile for MCU functionalilty experiment. For example, WEBRTC-HLS, DASH, RTMP...etc
