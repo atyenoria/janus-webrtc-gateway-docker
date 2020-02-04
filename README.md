@@ -13,7 +13,7 @@ https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
 3. make run
 4. star this repository after succeeding. Create the issue if you failed. We will help you as much as possible
 ```
-- open in firefox (chrome can't work with http url)
+- open in Safari (http can't work in Chrome and Firefox)
 - use the host having global ip 
 
 # Dockerfile Characteristics
