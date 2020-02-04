@@ -9,6 +9,9 @@ build-nocache:
 bash: 
 	@docker run --rm --net=host --name="janus" -it -t atyenoria/$(TEMPLATE_NAME) /bin/bash
 
+attach: 
+	@docker exec -it janus /bin/bash
+
 run: 
 	@docker run --rm --net=host --name="janus" -it -t atyenoria/$(TEMPLATE_NAME)
 
