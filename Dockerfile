@@ -25,7 +25,7 @@ RUN apt-get -y update && apt-get install -y libmicrohttpd-dev \
     cmake \
     unzip \
     zip \
-    lsof wget vim sudo rsync cron mysql-client openssh-server supervisor locate gstreamer1.0-tools
+    lsof wget vim sudo rsync cron mysql-client openssh-server supervisor locate gstreamer1.0-tools mplayer
 
 
 
