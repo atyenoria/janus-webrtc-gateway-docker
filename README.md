@@ -22,6 +22,8 @@ https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
 - ffmpeg 4.2.1 with vpx, libx264, alsa(for headless chrome screen caputreing)
 - coturn v4.5.0.8 in order to test turn, use iceTransportPolicy=relay https://www.w3.org/TR/webrtc/#rtcicetransportpolicy-enum 
 - openresty 1.13.6.2
+- nvm + node.js LTS v10.16.0
+- certbot for let's encyrpt ssl setting
 - boringssl stable https://boringssl.googlesource.com/boringssl/+/chromium-stable 
 - libnice v0.1.14 https://github.com/libnice/libnice/releases/tag/0.1.14 
 - golang 1.7.5 for building boringssl
