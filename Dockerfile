@@ -58,7 +58,7 @@ RUN VPX="v1.8.1" && cd ~/ffmpeg_sources && \
 
 
 RUN OPUS="1.3" && cd ~/ffmpeg_sources && \
-    wget http://downloads.xiph.org/releases/opus/opus-$OPUS.tar.gz && \
+    wget https://archive.mozilla.org/pub/opus/opus-$OPUS.tar.gz && \
     tar xzvf opus-$OPUS.tar.gz && \
     cd opus-$OPUS && \
     ./configure --help && \
