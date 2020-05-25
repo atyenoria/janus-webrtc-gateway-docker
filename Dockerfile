@@ -3,7 +3,7 @@ FROM buildpack-deps:stretch
 RUN sed -i 's/archive.ubuntu.com/mirror.aarnet.edu.au\/pub\/ubuntu\/archive/g' /etc/apt/sources.list
 
 RUN rm -rf /var/lib/apt/lists/*
-RUN apt-get -y update && apt-get install -y libmicrohttpd-dev \
+RUN apt-get -y update && apt-get install -y \
     libjansson-dev \
     libnice-dev \
     libssl-dev \
@@ -265,6 +265,13 @@ RUN cd / && git clone https://github.com/sctplab/usrsctp.git && cd /usrsctp && \
     ./configure && \
     make && make install
 
+WORKDIR /tmp
+RUN git clone https://git.gnunet.org/libmicrohttpd.git
+WORKDIR /tmp/libmicrohttpd
+RUN git checkout v0.9.60
+RUN autoreconf -fi
+RUN ./configure
+RUN make && make install
 
 
 
@@ -285,6 +292,8 @@ RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && cd /janus
     --enable-plugin-videocall \
     --enable-plugin-voicemail \
     --enable-plugin-textroom \
+    --enable-rest \
+    --enable-turn-rest-api \
     --enable-plugin-audiobridge \
     --enable-plugin-nosip \
     --enable-all-handlers && \
