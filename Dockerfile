@@ -18,6 +18,7 @@ RUN apt-get -y update && apt-get install -y \
     pkg-config \
     gengetopt \
     libtool \
+    autopoint \
     automake \
     build-essential \
     subversion \
