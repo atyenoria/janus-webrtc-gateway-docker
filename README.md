@@ -26,10 +26,9 @@ https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
 - nvm + node.js v12.18.3 (Latest LTS: Erbium)
 - certbot for let's encyrpt ssl setting
 - boringssl stable https://boringssl.googlesource.com/boringssl/+/chromium-stable 
-- libnice v0.1.17 https://gitlab.freedesktop.org/libnice/libnice/-/tags/0.1.17
+- libnice v0.1.17 https://gitlab.freedesktop.org/libnice/libnice/-/tags/0.1.17 (removing global lock for improving janus gateway)
 - golang 1.7.5 for building boringssl
-- janus v0.10.4, enable all janus plugins(like videoroom, streaming, audiobridge...etc)
-- libnice from the latest gitlab https://gitlab.freedesktop.org/libnice/libnice  (removing global lock for improving janus gateway)
+- janus v0.10.4, enable all janus plugins(like videoroom, streaming, audiobridge...etc
 - [optional] GDB, Address Sanitizer(optional, see Dockerfile) for getting more info when crashing
 - nginx-rtmp-module and ffmpeg compile for MCU functionalilty experiment. For example, WEBRTC-HLS, DASH, RTMP...etc
 - use --net=host for network performance. If you use docker network, some overhead might appear (ref. https://hub.docker.com/_/consul/)
