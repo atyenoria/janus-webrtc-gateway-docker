@@ -20,6 +20,7 @@ https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
 - libwebsocket v3.1.0, build with LWS_MAX_SMP=1, ipv6=true for single thread processing
 - libsrtp v2.2.0
 - ffmpeg 4.2.1 with vpx, libx264, alsa(for headless chrome screen caputreing)
+- gstreamer installation from gstreamer1.0-tools. (WIP for meson ninja build)
 - coturn v4.5.0.8 in order to test turn, use iceTransportPolicy=relay https://www.w3.org/TR/webrtc/#rtcicetransportpolicy-enum 
 - openresty 1.13.6.2
 - nvm + node.js LTS v10.16.0
