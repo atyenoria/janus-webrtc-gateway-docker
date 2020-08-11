@@ -1,8 +1,7 @@
-dist: trusty
+sudo: required
+services:
+  - docker
 
-jobs:
-  include:
-    - stage: build docker image
-      script:
-      - docker build -t atyenoria/janus-gateway-docker .
-      - echo "success"
+script:
+  - docker build -t atyenoria/janus-gateway-docker .
+  - echo "success"
