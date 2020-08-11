@@ -26,24 +26,25 @@ RUN apt-get -y update && apt-get install -y \
     cmake \
     unzip \
     zip \
-    lsof wget vim sudo rsync cron mysql-client openssh-server supervisor locate mplayer valgrind certbot python-certbot-apache dnsutils tcpdump
+    lsof wget vim sudo rsync cron mysql-client openssh-server supervisor locate mplayer valgrind certbot python-certbot-apache dnsutils tcpdump gstreamer1.0-tools
 
-RUN apt-get install -y libx264-dev libmatroska-dev libopus-dev libssl1.0-dev libtheora-dev libogg-dev python3-pip flex bison libsoup2.4-dev libjpeg-dev nasm libvpx-dev
-RUN sudo pip3 install meson ninja
-RUN git clone https://gitlab.freedesktop.org/gstreamer/gst-build
-WORKDIR /gst-build
-RUN git log -n 1 HEAD
-RUN git checkout 1016bf23
-RUN git log -n 1 HEAD
-RUN mkdir builddir
+
+# RUN apt-get install -y libx264-dev libmatroska-dev libopus-dev libssl1.0-dev libtheora-dev libogg-dev python3-pip flex bison libsoup2.4-dev libjpeg-dev nasm libvpx-dev
+# RUN sudo pip3 install meson ninja
+# RUN git clone https://gitlab.freedesktop.org/gstreamer/gst-build
+# WORKDIR /gst-build
+# RUN git log -n 1 HEAD
+# RUN git checkout 1016bf23
+# RUN git log -n 1 HEAD
+# RUN mkdir builddir
+# # RUN meson builddir
 # RUN meson builddir
-RUN meson builddir
-RUN ninja -C builddir update
-RUN ninja install -C builddir
-RUN ldconfig
-RUN which gst-launch-1.0
-RUN ldd /usr/local/bin/gst-launch-1.0
-RUN gst-launch-1.0
+# RUN ninja -C builddir update
+# RUN ninja install -C builddir
+# RUN ldconfig
+# RUN which gst-launch-1.0
+# RUN ldd /usr/local/bin/gst-launch-1.0
+# RUN gst-launch-1.0
 
 
 # FFmpeg build section
