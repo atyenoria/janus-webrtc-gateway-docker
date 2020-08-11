@@ -26,7 +26,7 @@ https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
 - nvm + node.js v12.18.3 (Latest LTS: Erbium)
 - certbot for let's encyrpt ssl setting
 - boringssl stable https://boringssl.googlesource.com/boringssl/+/chromium-stable 
-- libnice v0.1.17 https://gitlab.freedesktop.org/libnice/libnice/-/tags/0.1.17 (removing global lock for improving janus gateway)
+- libnice v0.1.14 https://github.com/libnice/libnice/releases/tag/0.1.14 
 - golang 1.7.5 for building boringssl
 - janus v0.10.4, enable all janus plugins(like videoroom, streaming, audiobridge...etc
 - [optional] GDB, Address Sanitizer(optional, see Dockerfile) for getting more info when crashing

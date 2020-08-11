@@ -244,14 +244,14 @@ RUN SRTP="2.2.0" && apt-get remove -y libsrtp0-dev && wget https://github.com/ci
 
 
 
-# version 0.1.17 https://gitlab.freedesktop.org/libnice/libnice/-/commit/5fb2511725a690a68ed9ace030931b78bc6fe92c
+# March, 2019 1 commit 67807a17ce983a860804d7732aaf7d2fb56150ba
 RUN apt-get remove -y libnice-dev libnice10 && \
     echo "deb http://deb.debian.org/debian  stretch-backports main" >> /etc/apt/sources.list && \
     apt-get  update && \
     apt-get install -y gtk-doc-tools libgnutls28-dev -t stretch-backports  && \
     git clone https://gitlab.freedesktop.org/libnice/libnice.git && \
     cd libnice && \
-    git checkout 5fb2511725a690a68ed9ace030931b78bc6fe92c && \
+    git checkout 67807a17ce983a860804d7732aaf7d2fb56150ba && \
     bash autogen.sh && \
     ./configure --prefix=/usr && \
     make && \
