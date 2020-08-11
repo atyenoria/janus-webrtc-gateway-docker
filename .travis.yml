@@ -6,4 +6,3 @@ jobs:
       script:
       - docker build -t atyenoria/janus-gateway-docker .
       - echo "success"
-      
