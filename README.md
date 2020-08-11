@@ -23,7 +23,7 @@ https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
 - gstreamer installation from gstreamer1.0-tools. (WIP for meson ninja build)
 - coturn v4.5.0.8 in order to test turn, use iceTransportPolicy=relay https://www.w3.org/TR/webrtc/#rtcicetransportpolicy-enum 
 - openresty 1.13.6.2
-- nvm + node.js LTS v10.16.0
+- nvm + node.js v12.18.3 (Latest LTS: Erbium)
 - certbot for let's encyrpt ssl setting
 - boringssl stable https://boringssl.googlesource.com/boringssl/+/chromium-stable 
 - libnice v0.1.14 https://github.com/libnice/libnice/releases/tag/0.1.14 
