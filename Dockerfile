@@ -321,7 +321,7 @@ COPY nginx.conf /usr/local/nginx/nginx.conf
 
 
 ENV NVM_VERSION v0.35.3
-ENV NODE_VERSION v10.16.0
+ENV NODE_VERSION v12.18.3
 ENV NVM_DIR /usr/local/nvm
 RUN mkdir $NVM_DIR
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/$NVM_VERSION/install.sh | bash
