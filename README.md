@@ -28,7 +28,7 @@ https://www.useloom.com/share/325799006d6f4b64a6ce0662ca3f1d57
 - boringssl stable https://boringssl.googlesource.com/boringssl/+/chromium-stable 
 - libnice v0.1.14 https://github.com/libnice/libnice/releases/tag/0.1.14 
 - golang 1.7.5 for building boringssl
-- janus v0.10.4, enable all janus plugins(like videoroom, streaming, audiobridge...etc
+- janus v0.10.7, enable all janus plugins(like videoroom, streaming, audiobridge...etc
 - [optional] GDB, Address Sanitizer(optional, see Dockerfile) for getting more info when crashing
 - nginx-rtmp-module and ffmpeg compile for MCU functionalilty experiment. For example, WEBRTC-HLS, DASH, RTMP...etc
 - use --net=host for network performance. If you use docker network, some overhead might appear (ref. https://hub.docker.com/_/consul/)
