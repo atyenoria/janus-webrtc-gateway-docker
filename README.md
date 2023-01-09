@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/atyenoria/janus-webrtc-gateway-docker.svg?branch=master)](https://travis-ci.org/atyenoria/janus-webrtc-gateway-docker)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1939/badge)](https://bestpractices.coreinfrastructure.org/projects/1939)
 # Caustion!
-This repo is not maintained anymore. Use this repository https://github.com/wangsrGit119/janus-webrtc-gateway-docker 
+This repo is not maintained anymore. Use this repository https://github.com/wangsrGit119/janus-webrtc-gateway-docker to raise issues or PRs. Thanks.
 
 
 # How to use
